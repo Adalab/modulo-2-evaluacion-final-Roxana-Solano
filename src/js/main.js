@@ -1,3 +1,5 @@
-'use strict';
+"use strict";
 
-console.log('>> Ready :)');
+const inputSearch = document.querySelector(".js_inputSearch");
+const buttonSerch = document.querySelector(".js_bntSerch");
+const buttonReset = document.querySelector(".js_bntReset");
