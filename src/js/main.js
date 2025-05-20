@@ -3,10 +3,10 @@
 const buttonSerch = document.querySelector(".js_bntSerch");
 const buttonReset = document.querySelector(".js_bntReset");
 const seriesList = document.querySelector(".js_serieslist");
+const inputSearch = document.querySelector(".js_inputSearch");
 
 //escucho el click del boton buscar
 buttonSerch.addEventListener("click", () => {
-  const inputSearch = document.querySelector(".js_inputSearch");
   const valueInputSearch = inputSearch.value;
   if (valueInputSearch === "") {
     seriesList.innerHTML = `<p> No hay resultados </p>`;
@@ -40,3 +40,8 @@ function draw(image, title) {
   //innerHTMl del LI seriesList.innerHTML = seriesList.innerHTML + serie
   seriesList.innerHTML += serie;
 }
+
+buttonReset.addEventListener("click", () => {
+  seriesList.innerHTML = "";
+  inputSearch.innerHTML = "";
+});
