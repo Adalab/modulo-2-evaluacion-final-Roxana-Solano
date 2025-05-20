@@ -8,15 +8,17 @@ const seriesFavorite = document.querySelector(".js_seriesfavorite");
 const favorite = [];
 
 //escucho el click del boton buscar
-buttonSerch.addEventListener("click", (ev) => {
-  ev.preventDefault();
-  const valueInputSearch = inputSearch.value;
-  if (valueInputSearch === "") {
-    seriesList.innerHTML = `<p> No hay resultados </p>`;
-  } else {
-    requestApi(valueInputSearch);
-  }
-});
+function buttonSearch() {
+  buttonSerch.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    const valueInputSearch = inputSearch.value;
+    if (valueInputSearch === "") {
+      seriesList.innerHTML = `<p> No hay resultados </p>`;
+    } else {
+      requestApi(valueInputSearch);
+    }
+  });
+}
 
 function requestApi(name) {
   fetch(`https://api.jikan.moe/v4/anime?q=${name}`)
@@ -26,7 +28,6 @@ function requestApi(name) {
 
 function renderData(data) {
   seriesList.innerHTML = ""; //limpia la lista
-  console.log(data);
 
   for (const anime of data) {
     const title = anime.title;
@@ -51,11 +52,44 @@ function addEventSerie(image, title, id, seriesFavorite) {
   item.addEventListener("click", (ev) => {
     ev.preventDefault();
     draw(image, title, id, seriesFavorite);
+    const obj = {
+      image,
+      title,
+      id,
+    };
+    favorite.push(obj);
+    localStorage.setItem("favorite", JSON.stringify(favorite));
   });
 }
 
-buttonReset.addEventListener("click", (ev) => {
-  ev.preventDefault();
-  seriesList.innerHTML = "";
-  inputSearch.innerHTML = "";
-});
+function getFavorite() {
+  const localStorageFavorite = JSON.parse(localStorage.getItem("favorite"));
+  if (localStorageFavorite) {
+    for (const animeFavorite of localStorageFavorite) {
+      draw(
+        animeFavorite.image,
+        animeFavorite.title,
+        animeFavorite.id,
+        seriesFavorite
+      );
+      const obj = {
+        image: animeFavorite.image,
+        title: animeFavorite.title,
+        id: animeFavorite.id,
+      };
+      favorite.push(obj);
+    }
+  }
+}
+
+function resetButton() {
+  buttonReset.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    seriesList.innerHTML = "";
+    inputSearch.innerHTML = "";
+  });
+}
+
+buttonSearch();
+resetButton();
+getFavorite();
