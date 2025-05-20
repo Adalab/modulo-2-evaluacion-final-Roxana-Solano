@@ -11,6 +11,7 @@ const favorite = [];
 function buttonSearch() {
   buttonSerch.addEventListener("click", (ev) => {
     ev.preventDefault();
+
     const valueInputSearch = inputSearch.value;
     if (valueInputSearch === "") {
       seriesList.innerHTML = `<p> No hay resultados </p>`;
@@ -31,7 +32,9 @@ function renderData(data) {
 
   for (const anime of data) {
     const title = anime.title;
-    const image = anime.images.jpg.image_url;
+    let image = anime.images.jpg.image_url;
+    //if /apple-touch-icon-256 image include image
+    // image = placeholder
     const id = anime.mal_id;
     draw(image, title, id, seriesList);
     addEventSerie(image, title, id, seriesFavorite);
@@ -40,8 +43,8 @@ function renderData(data) {
 
 function draw(image, title, id, container) {
   const serie = `<li id="serie-${id}">
-                    <h2>${title}</h2>
                     <img src="${image}" alt="${title}" width="150">
+                    <h2>${title}</h2>
                 </li>`;
   //innerHTMl del LI seriesList.innerHTML = seriesList.innerHTML + serie
   container.insertAdjacentHTML("beforeend", serie);
@@ -52,6 +55,7 @@ function addEventSerie(image, title, id, seriesFavorite) {
   item.addEventListener("click", (ev) => {
     ev.preventDefault();
     draw(image, title, id, seriesFavorite);
+    //agregar clase
     const obj = {
       image,
       title,
