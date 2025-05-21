@@ -13,17 +13,28 @@
     gap: 16px; 
     justify-content: center;
     li{
-        width: 160px;
+        width: 200px;
+        text-align: center;
+        padding-top: 25px;
+        color: floralwhite;
     }
 }
 .seriesfavorite{
-    width: 25%;
      li{
-        width: 160px;
+        width: 200px;
+        text-align: center;
+        padding-top: 25px;
+        color: pink;
+    }
+    h4{
+        padding: 0px 5px 0px 5px;
     }
 }
 .seriesfavorite,.serieslist{
     list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
 }
 
 .container{
@@ -34,7 +45,9 @@
 
 }
 .title_resul{
-    text-align: center;  
+    background-color: floralwhite;
+    margin: 0px;
+    text-align: center;
 
 }
  .input_search{
@@ -58,9 +71,23 @@
     margin-left: 8px;
  }
  .lisresul{
-    background-color: floralwhite;
- }
-/*  .lisfavorite{
-    background-color: pink;
+    border: 3px solid floralwhite;
     margin-left: 1%;
- } */
+ }
+.lisfavorite{
+    border: 3px solid pink;
+    margin-left: 1%;
+ }
+ .title_favorite{
+    background-color: pink;
+    margin: 0px;
+    text-align: center;
+ }
+ .highligth{
+    border: 5px solid aqua;
+    color: aqua !important;
+ }
+
+ .hidden{
+    display: none;
+ }

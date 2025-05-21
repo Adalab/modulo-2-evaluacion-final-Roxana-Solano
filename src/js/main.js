@@ -5,6 +5,8 @@ const buttonReset = document.querySelector(".js_bntReset");
 const seriesList = document.querySelector(".js_serieslist");
 const inputSearch = document.querySelector(".js_inputSearch");
 const seriesFavorite = document.querySelector(".js_seriesfavorite");
+const containerFavorite = document.querySelector(".lisfavorite");
+const containerSerie = document.querySelector(".lisresul");
 const favorite = [];
 
 //escucho el click del boton buscar
@@ -29,13 +31,16 @@ function requestApi(name) {
 
 function renderData(data) {
   seriesList.innerHTML = ""; //limpia la lista
-
+  containerSerie.classList.remove("hidden");
   for (const anime of data) {
     const title = anime.title;
     let image = anime.images.jpg.image_url;
-    //if /apple-touch-icon-256 image include image
-    // image = placeholder
     const id = anime.mal_id;
+
+    if (image.includes("apple-touch-icon-256")) {
+      image = "https://placehold.co/210x300/ffffff/555555?text=TV";
+    }
+
     draw(image, title, id, seriesList);
     addEventSerie(image, title, id, seriesFavorite);
   }
@@ -44,9 +49,8 @@ function renderData(data) {
 function draw(image, title, id, container) {
   const serie = `<li id="serie-${id}">
                     <img src="${image}" alt="${title}" width="150">
-                    <h2>${title}</h2>
+                    <h4>${title}</h4>
                 </li>`;
-  //innerHTMl del LI seriesList.innerHTML = seriesList.innerHTML + serie
   container.insertAdjacentHTML("beforeend", serie);
 }
 
@@ -54,8 +58,9 @@ function addEventSerie(image, title, id, seriesFavorite) {
   const item = document.querySelector(`#serie-${id}`);
   item.addEventListener("click", (ev) => {
     ev.preventDefault();
+    containerFavorite.classList.remove("hidden");
     draw(image, title, id, seriesFavorite);
-    //agregar clase
+    item.classList.add("highligth");
     const obj = {
       image,
       title,
@@ -69,6 +74,7 @@ function addEventSerie(image, title, id, seriesFavorite) {
 function getFavorite() {
   const localStorageFavorite = JSON.parse(localStorage.getItem("favorite"));
   if (localStorageFavorite) {
+    containerFavorite.classList.remove("hidden");
     for (const animeFavorite of localStorageFavorite) {
       draw(
         animeFavorite.image,
@@ -91,9 +97,17 @@ function resetButton() {
     ev.preventDefault();
     seriesList.innerHTML = "";
     inputSearch.innerHTML = "";
+    seriesFavorite.innerHTML = "";
+    localStorage.clear();
+    containerFavorite.classList.add("hidden");
+    containerSerie.classList.add("hidden");
   });
 }
 
-buttonSearch();
-resetButton();
-getFavorite();
+function start() {
+  buttonSearch();
+  resetButton();
+  getFavorite();
+}
+
+start();
