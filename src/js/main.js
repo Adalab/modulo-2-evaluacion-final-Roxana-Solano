@@ -61,6 +61,7 @@ function addEventSerie(image, title, id, seriesFavorite) {
     containerFavorite.classList.remove("hidden");
     draw(image, title, id, seriesFavorite);
     item.classList.add("highligth");
+    //Save Favorites
     const obj = {
       image,
       title,
@@ -71,6 +72,7 @@ function addEventSerie(image, title, id, seriesFavorite) {
   });
 }
 
+// Recovery Favorites
 function getFavorite() {
   const localStorageFavorite = JSON.parse(localStorage.getItem("favorite"));
   if (localStorageFavorite) {
