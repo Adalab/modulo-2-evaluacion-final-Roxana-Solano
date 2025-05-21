@@ -1,4 +1,4 @@
-![Adalab](https://beta.adalab.es/resources/images/adalab-logo-155x61-bg-white.png)
+!(http://beta.adalab.es/modulo-2-evaluacion-final-Roxana-Solano/)
 
 # Buscador de Series Anime 🎴
 
