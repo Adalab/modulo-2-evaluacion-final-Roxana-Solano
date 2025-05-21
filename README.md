@@ -18,7 +18,7 @@ Este es un primer proyecto de JavaScript realizado para la evaluación del segun
 - CSS
 - JavaScript
 - API
-- localStorage
+- (localStorage)
 
 # ¿Cómo arrancamos el proyecto?
 
