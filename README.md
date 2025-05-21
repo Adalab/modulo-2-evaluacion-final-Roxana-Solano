@@ -7,7 +7,7 @@ Este es un primer proyecto de JavaScript realizado para la evaluación del segun
 # Funcionalidad
 
 - Buscar series de anime por nombres usando una API (https://docs.api.jikan.moe/)
-- Mostrar los resultados con imagenes y titulo.
+- Mostrar los resultados con imagenes y título.
 - Guardar serie favoritas haciendo clic sobre ellas.
 - Mostrar una lista de favoritos que se conserva aunque se recargue la página con ("localStorage").
 - Botón para resetear la búsqueda y los favoritos.
@@ -18,7 +18,7 @@ Este es un primer proyecto de JavaScript realizado para la evaluación del segun
 - CSS
 - JavaScript
 - API
-- localStorage
+- (localStorage)
 
 # ¿Cómo arrancamos el proyecto?
 
